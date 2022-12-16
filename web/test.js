@@ -1,10 +1,15 @@
 function jsFunction() {
     alert('alart');
-    //windows.functionName();
 }
 
 
-windows.functionName();
+function functionName(){
+    alert('function');
+};
+
+
+window.functionName(_someDartFunction);
+
 
 window.state = {
   hello: 'resultRows'
