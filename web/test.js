@@ -3,14 +3,15 @@ function jsFunction() {
 }
 
 
-function functionName(){
-    alert('function');
-};
+function functionName()
 
+//window.functionName(_someDartFunction);
 
-window.functionName(_someDartFunction);
+//window._someDartFunction();
 
+//window.state = {
+//  hello: 'resultRows'
+//}
 
-window.state = {
-  hello: 'resultRows'
-}
+// JavaScript
+//printOptions({responsive: true});

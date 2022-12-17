@@ -8,11 +8,9 @@ import 'dart:html' as html;
 //import 'bridge_to_js.dart';
 import 'package:flutter/material.dart';
 
-
 /// Dart 関数から JavaScript を呼び出せるようにする#
-@JS('jsFunction')//呼び出したいfunction名
-external void callJsFunction();//dartで呼び出すときの呼び方を定義
-
+@JS('jsFunction') //呼び出したいfunction名
+external void callJsFunction(); //dartで呼び出すときの呼び方を定義
 
 /// JavaScript から Dart 関数を呼び出せるようにする#
 /// Allows assigning a function to be callable from `window.functionName()`
@@ -22,23 +20,18 @@ external set _functionName(void Function() f);
 
 ///void set _functionName(void Function() f)
 /// package:calljavascript/main.dart
-/// JavaScript から Dart 関数を呼び出せるようにする# 
+/// JavaScript から Dart 関数を呼び出せるようにする#
 /// Allows assigning a function to be callable from window.functionName()
 /// 'window.functionName()' から呼び出し可能な関数を割り当てることができます。
-
 
 /// Allows calling the assigned function from Dart as well.
 /// 割り当てられた関数を Dart から呼び出すこともできます。
 @JS()
 external void functionName();
 
-
 void _someDartFunction() {
   print('Hello from Dart!');
 }
-
-
-
 
 @JS()
 @staticInterop
@@ -49,7 +42,8 @@ extension JSWindowExtension on JSWindow {
   String get nameAllCaps => name.toUpperCase();
 }
 
-
+@JS()
+external void log(dynamic str);
 /*
 function allowInterop(F, f) {
     if (!dart.isDartFunction(f)) return f;
@@ -64,16 +58,16 @@ function allowInterop(F, f) {
   }
 */
 
-
-
 void main() {
+  log('Hello world!');
   var jsWindow = html.window as JSWindow;
   print(jsWindow.name.toUpperCase() == jsWindow.nameAllCaps);
   _functionName = allowInterop(_someDartFunction);
-  //avaScript codeで 
+  // JavaScript code may now call `functionName()` or `window.functionName()`.
+
+  //avaScript codeで
   //'functionName()' または 'window.functionName()' を
   //呼び出すことができるようになりました。
-
   runApp(const MyApp());
 }
 
@@ -179,7 +173,7 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: callJsFunction,//_incrementCounter,
+        onPressed: callJsFunction, //_incrementCounter,
         tooltip: 'Increment',
         child: const Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
